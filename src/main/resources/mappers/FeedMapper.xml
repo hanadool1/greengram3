@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.greengram3.feed.FeedMapper">
+
+    <insert id="insFeed" useGeneratedKeys="true" keyProperty="ifeed">
+        insert into t_feed
+        set iuser = #{iuser},
+        contents = #{contents},
+        location = #{location}
+    </insert>
+
+    <select id="selFeedAll">
+        select A.ifeed, A.contents, A.location, A.created_at AS createdAt,
+        B.iuser AS writerIuser, B.nm AS writerNm, B.pic AS writerPic
+        from t_feed AS A
+        inner join t_user AS B
+        on A.iuser = B.iuser
+        order by A.ifeed desc
+        limit #{startIdx}, #{rowCount}
+    </select>
+
+
+</mapper>
