@@ -28,7 +28,7 @@ public class FeedCommentController {
         // 4~999까지의 레코드만 리턴
         FeedCommentSelDto dto = new FeedCommentSelDto();
         dto.setIfeed(ifeed);
-        dto.setStartIdx(4);
+        dto.setStartIdx(3);
         dto.setRowCount(999);
         return service.getFeedCommentAll(dto);
     }
