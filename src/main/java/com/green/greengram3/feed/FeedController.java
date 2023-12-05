@@ -1,10 +1,7 @@
 package com.green.greengram3.feed;
 
 import com.green.greengram3.common.ResVo;
-import com.green.greengram3.feed.model.FeedFavDto;
-import com.green.greengram3.feed.model.FeedInsDto;
-import com.green.greengram3.feed.model.FeedSelDto;
-import com.green.greengram3.feed.model.FeedSelVo;
+import com.green.greengram3.feed.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +32,10 @@ public class FeedController {
         return service.toggleFeedFav(dto);
     }
 
+    // ifeed, iuser
+    @DeleteMapping
+    public ResVo delFeed(FeedDelDto dto) {
+        return service.delFeed(dto);
+    }
 
 }

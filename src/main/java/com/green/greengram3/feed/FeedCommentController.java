@@ -1,6 +1,7 @@
 package com.green.greengram3.feed;
 
 import com.green.greengram3.common.ResVo;
+import com.green.greengram3.feed.model.FeedCommentDelDto;
 import com.green.greengram3.feed.model.FeedCommentInsDto;
 import com.green.greengram3.feed.model.FeedCommentSelDto;
 import com.green.greengram3.feed.model.FeedCommentSelVo;
@@ -32,5 +33,15 @@ public class FeedCommentController {
         dto.setRowCount(999);
         return service.getFeedCommentAll(dto);
     }
+
+    @DeleteMapping
+    private ResVo delFeedComment(@RequestParam("ifeed_comment") int ifeedComment,
+                                 @RequestParam("logined_iuser") int loginedIuser) {
+        return service.delFeedComment(FeedCommentDelDto.builder()
+                        .ifeedComment(ifeedComment)
+                        .iuser(loginedIuser)
+                        .build());
+    }
+
 
 }

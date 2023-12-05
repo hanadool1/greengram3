@@ -23,4 +23,16 @@
         LIMIT #{startIdx}, #{rowCount}
     </select>
 
+    <delete id="delFeedComment">
+        DELETE
+        FROM t_feed_comment
+        WHERE ifeed_comment = #{ifeedComment}
+        AND iuser = #{iuser}
+    </delete>
+
+    <delete id="delFeedByComment">
+        DELETE
+        FROM t_feed_comment
+        WHERE ifeed = #{ifeed}
+    </delete>
 </mapper>

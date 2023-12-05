@@ -12,4 +12,6 @@ public class Const {
 
     public static final int FEED_COMMENT_FIRST_CNT = 4;
 
+    public static final int FAIL = 0;
+
 }

@@ -79,4 +79,25 @@ public class FeedService {
     }
 
 
+    public ResVo delFeed(FeedDelDto dto) {
+        // 피드삭제
+        int check = mapper.selFeed(dto);
+        // 피드 삭제전 피드가 있는 지 확인
+        if (check > 0) {
+            // check가 양수일 경우 피드가 있다는 뜻
+            picsMapper.delFeedByPics(dto);
+            // 피드 사진 삭제
+            favMapper.delFeedByFav(dto);
+            // 피드 좋아요 삭제
+            commentMapper.delFeedByComment(dto);
+            // 피드 댓글 삭제
+            mapper.delFeed(dto);
+            // 피드 삭제
+            return new ResVo(Const.SUCCESS);
+            // 1 리턴
+        }
+        return new ResVo(Const.FAIL);
+        // 삭제한 피드가 없을 때 0 리턴
+    }
+
 }

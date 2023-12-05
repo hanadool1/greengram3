@@ -62,4 +62,12 @@ public class UserService {
         // pVo에 저장된 pic(getter)를 vo에 있는 pic에 넣는다(setter).
         return vo;
     }
+
+    public ResVo toggleFollow(UserFollowDto dto) {
+        int delfollow = mapper.delFollow(dto);
+        if (delfollow == 1) {
+            return new ResVo(0);
+        }
+        return new ResVo(mapper.insFollow(dto));
+    }
 }

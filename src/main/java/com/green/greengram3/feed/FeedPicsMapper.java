@@ -1,5 +1,6 @@
 package com.green.greengram3.feed;
 
+import com.green.greengram3.feed.model.FeedDelDto;
 import com.green.greengram3.feed.model.FeedInsDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,4 +10,5 @@ import java.util.List;
 public interface FeedPicsMapper {
     int insFeedPics(FeedInsDto dto);
     List<String> selFeedPicsAll(int ifeed);
+    int delFeedByPics(FeedDelDto dto);
 }
