@@ -9,4 +9,5 @@ public interface UserMapper {
     UserSigninProcVo selUserById(String uid);
     int insFollow(UserFollowDto dto);
     int delFollow(UserFollowDto dto);
+    UserInfoVo selUserInfo(UserInfoSelDto dto);
 }
