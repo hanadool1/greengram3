@@ -21,4 +21,13 @@
         FROM t_feed_fav
         WHERE ifeed = #{ifeed}
     </delete>
+
+    <select id="selFeedFavForTest">
+        SELECT ifeed, iuser
+        FROM t_feed_fav
+        WHERE ifeed = #{ifeed}
+        <if test="iuser > 0">
+            AND iuser = #{iuser}
+        </if>
+    </select>
 </mapper>

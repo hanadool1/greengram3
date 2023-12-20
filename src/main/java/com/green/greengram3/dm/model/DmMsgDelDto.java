@@ -1,13 +1,10 @@
 package com.green.greengram3.dm.model;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 
 @Data
-@Builder
-public class DmUserInsDto {
+public class DmMsgDelDto {
     private int idm;
     private int iuser;
-
+    private int seq;
 }

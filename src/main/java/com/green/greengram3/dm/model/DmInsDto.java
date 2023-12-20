@@ -1,8 +1,13 @@
 package com.green.greengram3.dm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
 public class DmInsDto {
-    private int idm;
+    @JsonIgnore
+    private int idm; // auto_increment값 가져오려고
+
+    private int loginedIuser;
+    private int otherPersonIuser;
 }
