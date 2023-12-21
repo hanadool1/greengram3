@@ -1,6 +1,7 @@
 package com.green.greengram3.feed;
 
 import com.green.greengram3.common.ResVo;
+import com.green.greengram3.feed.model.FeedCommentSelVo;
 import com.green.greengram3.feed.model.FeedInsDto;
 import com.green.greengram3.feed.model.FeedSelDto;
 import com.green.greengram3.feed.model.FeedSelVo;
@@ -49,6 +50,7 @@ class FeedServiceTest {
         assertEquals(dto.getIfeed(), vo.getResult());
 
         verify(mapper).insFeed(any());
+        // 제대로 호출했는지 확인하는 메소드 (호출하기만 하면 true)
         verify(picsMapper).insFeedPics(any());
 
         FeedInsDto dto2 = new FeedInsDto();
@@ -60,14 +62,14 @@ class FeedServiceTest {
     }
 
     @Test
-    void feedSel() {
+    void getFeedAll() {
         FeedSelVo feedSelVo1 = new FeedSelVo();
         feedSelVo1.setIfeed(1);
         feedSelVo1.setContents("1번");
 
         FeedSelVo feedSelVo2 = new FeedSelVo();
-        feedSelVo1.setIfeed(2);
-        feedSelVo1.setContents("2번");
+        feedSelVo2.setIfeed(2);
+        feedSelVo2.setContents("2번");
 
         List<FeedSelVo> list = new ArrayList<>();
         list.add(feedSelVo1);
@@ -108,6 +110,12 @@ class FeedServiceTest {
 //        }
         assertEquals(list.get(0).getPics(),feed1Pics);
         assertEquals(list.get(1).getPics(),feed2Pics);
+
+
+
+
+
+
     }
 
     @Test
