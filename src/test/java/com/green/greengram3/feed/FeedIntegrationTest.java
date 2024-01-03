@@ -3,17 +3,22 @@ package com.green.greengram3.feed;
 
 import com.green.greengram3.BaseIntegrationTest;
 import com.green.greengram3.common.ResVo;
+import com.green.greengram3.feed.model.FeedDelDto;
 import com.green.greengram3.feed.model.FeedInsDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -50,4 +55,26 @@ public class FeedIntegrationTest extends BaseIntegrationTest {
         ResVo vo = om.readValue(content, ResVo.class); // String to JSON 문자열을 객체로
         assertEquals(true, vo.getResult() > 0);
     }
+
+    @Test
+    @Rollback(false)
+    public void delFeed() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+//        params.add("ifeed", "125");
+//        params.add("iuser", "3");
+
+        MvcResult mr = mvc.perform(
+                        MockMvcRequestBuilders.delete("/api/feed?ifeed=124&iuser=3")
+                                //.params(params)
+                )
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn();
+
+        String content = mr.getResponse().getContentAsString();
+        ResVo vo = om.readValue(content, ResVo.class);
+        assertEquals(1, vo.getResult());
+    }
+
+
 }

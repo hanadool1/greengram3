@@ -118,18 +118,20 @@ class FeedControllerTest {
 
     @Test
     void delFeed() throws Exception {
-        ResVo result = new ResVo(2);
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("ifeed", "1");
+        params.add("iuser", "2");
+        ResVo result = new ResVo(1);
 
-        given(service.delFeed(any())).willReturn(result);
-
-        mvc.perform( //포스트맨에서 send보내는거랑 비슷함 perform메소드 안에 파라미터 type은 MockMvcrequestBuilder
-                        MockMvcRequestBuilders
-                                .delete("/api/feed")
+        mvc.perform(
+                        MockMvcRequestBuilders.delete("/api/feed")
+                                .params(params)
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().string(mapper.writeValueAsString(result)))
                 .andDo(print());
 
-        verify(service).delFeed(any()); // 호출됐는지 확인 메소드 (호출만 된다면 true)
+
+        verify(service).delFeed(any());
     }
 }
